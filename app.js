@@ -1,39 +1,61 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-let amigos = [];
-const inputnombre = document.querySelector('#amigo');
-const seleccion = document.querySelector('#seleccion');
+let nombreamigo = [];
+let itemInput = document.getElementById('amigo');
+let listaNombre = document.getElementById('listaAmigos');
+let resultado = document.getElementById('resultado');
+//sdocument.querySelector('#sortear').setAttribute('disabled','true');
 
-//Asignar evento
-inputnombre.addEventListener('blur',function(evento){
-    
-   if(evento.target.value.trim() === ""){
-        mostrarAlerta('Por favor ingrese un nombre valido',evento.target.parentElement);
-        return
-   }
-   limpiarAlerta(evento.target.parentElement);
-});
-
-function mostrarAlerta(mensaje, referencia){
-    limpiarAlerta(referencia);
-    
-    const error = document.createElement('P');
-    error.textContent = mensaje;
-
-    //agregamos un color al fondo
-    error.classList.add('bg-red-600','text-white', 'p-2','text-center');
-
-    referencia.appendChild(error);   
+//funcion para borra datos
+function limpiarCaja(elemento) {
+    elemento.value = '';
 }
 
-function limpiarAlerta(referencia){
-    //Comprovamos si ya existe una alerta
-    const alerta = referencia.querySelector(".bg-red-600");
-    if(alerta){
-        alerta.remove();
+//funcion para agregar a lista desordenada
+function agregarItem(elemeto, lista){
+    //crea un nuevo elemento
+    let listItem = document.createElement('li');
+    listItem.textContent = elemeto;
+    //se imprime como lista desordenada
+    lista.appendChild(listItem);
+}
+
+//fincio para agregar nombre del amigo
+function agregarAmigo(){
+    //obtenemos el valor del campo input
+    let nombre = itemInput.value.trim();
+  
+    // checa the input no este vacio
+    if(nombre){
+        //agregamos el valor a una lista
+        nombreamigo.push(nombre);
+        
+        //Se agrega la lista desordenada
+        agregarItem(nombre,listaNombre);
+
+        //Limpiar el campo de entrada para el siguiente elemento
+        limpiarCaja(itemInput)
+
+    }else {
+        //Mensaje de alerta cuando no ingresa ningun nombre y aprieta el boton añadir
+        alert('Por favor, ingresae un nombre valido.');
     }
 }
 
-function agregarAmigo(){
-    /*let nombreAmigo = document.getElementById('amigo');*/
+function sortearAmigo(){
+    //Elimina los datos de lista
+    eliminarLista(listaNombre);
+    
+    // se genera numero aleatorio del tamaño de la lista
+    let posicionAleatoria = Math.floor(Math.random()*nombreamigo.length);
 
+    //Se imprime el ganador
+    agregarItem(nombreamigo[posicionAleatoria], resultado);
+
+    //Deshabilitar el botón de Sortear amigo
+    document.querySelector('#sortear').setAttribute('disabled','true');
+}
+
+//funcion para eliminar datos del DOM
+function eliminarLista(elemento){
+    elemento.remove();
 }
