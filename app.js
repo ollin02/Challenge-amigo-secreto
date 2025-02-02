@@ -19,7 +19,7 @@ function agregarItem(elemeto, lista){
     lista.appendChild(listItem);
 }
 
-//fincio para agregar nombre del amigo
+//funcio para agregar nombre del amigo
 function agregarAmigo(){
     //obtenemos el valor del campo input
     let nombre = itemInput.value.trim();
