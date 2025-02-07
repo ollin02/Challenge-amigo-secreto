@@ -41,6 +41,7 @@ function agregarAmigo(){
     }
 }
 
+//funcion que hace el sorteo
 function sortearAmigo(){
     //Elimina los datos de lista
     eliminarLista(listaNombre);
