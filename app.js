@@ -3,7 +3,6 @@ let nombreamigo = [];
 let itemInput = document.getElementById('amigo');
 let listaNombre = document.getElementById('listaAmigos');
 let resultado = document.getElementById('resultado');
-//sdocument.querySelector('#sortear').setAttribute('disabled','true');
 
 //funcion para borra datos
 function limpiarCaja(elemento) {
