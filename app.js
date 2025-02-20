@@ -11,18 +11,36 @@ function limpiarCaja(elemento) {
 
 //funcion para agregar a lista desordenada
 function agregarItem(elemeto, lista){
+    if(lista != resultado){
     //crea un nuevo elemento
     let listItem = document.createElement('li');
-    listItem.textContent = elemeto;
+    listItem.id = nombreamigo.indexOf(elemeto);
+    //console.log(nombreamigo.findIndex( n => {n == elemeto}));
+    //console.log(nombreamigo.indexOf(elemeto));
+
+    listItem.innerHTML = elemeto +  `<button id="elimina" onclick="eliminaNombre(${nombreamigo.indexOf(elemeto)})">x</button>`;
     //se imprime como lista desordenada
     lista.appendChild(listItem);
+    } else{
+        let listItem = document.createElement('li');
+        listItem.id = nombreamigo.indexOf(elemeto);
+        //console.log(nombreamigo.findIndex( n => {n == elemeto}));
+        //console.log(nombreamigo.indexOf(elemeto));
+    
+        listItem.innerHTML = elemeto;
+        //se imprime como lista desordenada
+        lista.appendChild(listItem);
+    }
+    
+
 }
 
 //funcio para agregar nombre del amigo
 function agregarAmigo(){
+    
     //obtenemos el valor del campo input
     let nombre = itemInput.value.trim();
-  
+    
     // checa the input no este vacio
     if(nombre){
         //agregamos el valor a una lista
@@ -47,10 +65,12 @@ function sortearAmigo(){
     
     // se genera numero aleatorio del tamaño de la lista
     let posicionAleatoria = Math.floor(Math.random()*nombreamigo.length);
+ 
 
     //Se imprime el ganador
     agregarItem(nombreamigo[posicionAleatoria], resultado);
 
+   
     //Deshabilitar el botón de Sortear amigo
     document.querySelector('#sortear').setAttribute('disabled','true');
 }
@@ -58,4 +78,19 @@ function sortearAmigo(){
 //funcion para eliminar datos del DOM
 function eliminarLista(elemento){
     elemento.remove();
+}
+
+function eliminaNombre(index){
+    let validar = confirm("¿Desea eliminar el nombre?");
+    console.log(nombreamigo);
+    if(validar){
+        //Elimino la etiqueta del html
+        const etiqueta = document.getElementById(index); 
+        eliminarLista(etiqueta)
+        //Elimina los datos de lista
+        nombreamigo.splice(index,1);
+        alert("El nombre fue eliminado");
+        
+             
+    }
 }

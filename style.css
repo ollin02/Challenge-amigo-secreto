@@ -125,6 +125,18 @@ button {
     background-color: #a1a1a1;
 }
 
+#elimina{
+    background-color: red;
+    width: 25px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin-left: 30px;
+    font-weight: bold;
+    border-radius: 15%;
+}
+
+
 /* Listas */
 ul {
     list-style-type: none;
@@ -132,6 +144,13 @@ ul {
     font-family: "Inter", sans-serif;
     font-size: 18px;
     margin: 20px 0;
+    text-transform: uppercase;
+}
+
+li {
+    display: flex;
+    justify-content: end;
+   /* border: solid yellowgreen;*/
 }
 
 .result-list {
