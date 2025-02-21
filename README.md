@@ -203,6 +203,7 @@ function inicia() {
     reinicia.style.visibility = "hidden";
     // Refresca la pagina
     location.reload();
+    //Se vacia el arreglo
     nombreamigo.splice(0,nombreamigo.length);
 }
 ```
