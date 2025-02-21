@@ -39,27 +39,30 @@
 <p>La función agregarAmigo() llevar la logica para mostrar la lista en la pagina conforme se agrega un nombre se guardara en una lista y tambien sera la encargada de validar que el usuario haya ingresado algun nombre.</p>
 
 ```javascript
-  //funcio para agregar nombre del amigo
-  function agregarAmigo(){
+function agregarAmigo() {
     //obtenemos el valor del campo input
-    let nombre = itemInput.value.trim(); //la funcion trimm() es para que no se guarden espacios 
-  
-    // checa que el input no este vacio
-    if(nombre){
+    let nombre = itemInput.value.trim();
+    intentos++
+    //Se valida para que se active el botón sortear
+    if(intentos >= 1 && nombreamigo.length === 0 && nombre !=""){
+        //Se avilita el botón sortear amigo
+        sortea.removeAttribute('disabled');
+    }
+    // checa the input no este vacio
+    if (nombre) {
         //agregamos el valor a una lista
         nombreamigo.push(nombre);
-        
-        //funcio que agrega la lista desordenada en el archivo index.html de forma dinamica
-        agregarItem(nombre,listaNombre);
+        //Se agrega la lista desordenada
+        agregarItem(nombre, listaNombre);
 
         //Limpiar el campo de entrada para el siguiente elemento
         limpiarCaja(itemInput)
 
-    }else {
+    } else {
         //Mensaje de alerta cuando no ingresa ningun nombre y aprieta el boton añadir
         alert('Por favor, ingresae un nombre valido.');
     }
-  }
+}
 ```
 
 <p>Para imprimir en la pagina la lista de nobres se le coloca el id =  "listaAmigos" a la etiqueta ul para generar la lista desordenada de forma dinamica </p>
@@ -78,12 +81,24 @@
 
 ```javascript
 //funcion para agregar a lista desordenada
-function agregarItem(elemeto, lista){
-    //crea un nuevo elemento o etiqueta li
-    let listItem = document.createElement('li');
-    listItem.textContent = elemeto;
-    //se imprime como lista desordenada
-    lista.appendChild(listItem);
+function agregarItem(elemeto, lista) {
+    if (lista != resultado) {
+        //crea un nuevo elemento
+        let listItem = document.createElement('li');
+        listItem.id = nombreamigo.indexOf(elemeto);
+        //listItem.className = "amigos";
+     
+        listItem.innerHTML = elemeto + `<button id="elimina" onclick="eliminaNombre(${nombreamigo.indexOf(elemeto)})">x</button>`;
+        //se imprime como lista desordenada
+        lista.appendChild(listItem);
+    } else {
+        let listItem = document.createElement('li');
+        listItem.id = nombreamigo.indexOf(elemeto);
+       
+        listItem.innerHTML = elemeto;
+        //se imprime como lista desordenada
+        lista.appendChild(listItem);
+    }
 }
 ```
 
@@ -112,27 +127,75 @@ function limpiarCaja(elemento) {
 
 ```javascript
 //funcion que hace el sorteo
-function sortearAmigo(){
+function sortearAmigo() {
+
     //Elimina los datos de lista
-    eliminarLista(listaNombre);
-    
+    eliminarElemento(listaNombre);
+
     // se genera numero aleatorio del tamaño de la lista
-    let posicionAleatoria = Math.floor(Math.random()*nombreamigo.length);
+    let posicionAleatoria = Math.floor(Math.random() * nombreamigo.length);
+
 
     //Se imprime el ganador
     agregarItem(nombreamigo[posicionAleatoria], resultado);
 
-    //Deshabilitar el botón de Sortear amigo
-    document.querySelector('#sortear').setAttribute('disabled','true');
+     //Hace visible botón Reiciar
+    reinicia.style.visibility = "visible";
+    //Oculta botón Sortear amigo
+    sortea.style.visibility = "hidden";
+
 }
 ```
 
 <p>Para borra la lista de nombres se genero la funcion eliminarLista(elemento)</p>
 
 ```javascript
-//funcion que hace el sorteo
-function eliminarLista(elemento){
-    elemento.remove();
+flistItem.innerHTML = elemeto + `<button id="elimina" onclick="eliminaNombre(${nombreamigo.indexOf(elemeto)})">x</button>`;
+}
+```
+<p>y se genero la función )</p>
+
+```javascript
+//funcion para eliminar elementos de la lista
+function eliminaNombre(index) {
+   
+    let validar = confirm("¿Desea eliminar el nombre?");
+
+    //Se valida que se quiere eliminar un elmento
+    if (validar) {
+        //Elimino la etiqueta del html
+        const etiqueta = document.getElementById(index);
+        eliminarElemento(etiqueta);
+        //Elimina los datos de lista
+        nombreamigo.splice(index, 1);
+        alert("El nombre fue eliminado");
+    }
+
+    //Se desavilita el oton sorteo
+    if(nombreamigo.length === 0){
+        sortea.setAttribute('disabled','true');
+    }
+}
+}
+```
+<p>Para poder reiniciar la pagina se implemento el botón Reinicar </p>
+
+```html
+  <button class="button-draw" onclick="inicia();" aria-label="Sortear amigo secreto" id="reiniciar">
+                    <img src="assets/play_circle_outline.png" alt="Ícono para sortear">
+                    Reiniciar
+                </button>
+```
+
+<p>Implementando la funcion inicia </p>
+
+```javascript
+function inicia() {
+    //Oculta botón Reiciar
+    reinicia.style.visibility = "hidden";
+    // Refresca la pagina
+    location.reload();
+    nombreamigo.splice(0,nombreamigo.length);
 }
 ```
 
