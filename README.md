@@ -33,7 +33,15 @@
 
 ```javascript
   let nombreamigo = [];
+  let intentos = 0;
   let itemInput = document.getElementById('amigo');
+  let divListas = document.querySelector(".listas");
+  let listaNombre = document.getElementById('listaAmigos');
+  let resultado = document.getElementById('resultado');
+  let reinicia = document.getElementById("reiniciar");
+  let sortea = document.getElementById("sortear");
+  // oculta botón reiniciar
+  reinicia.style.visibility = "hidden";
 ```
 
 <p>La función agregarAmigo() llevar la logica para mostrar la lista en la pagina conforme se agrega un nombre se guardara en una lista y tambien sera la encargada de validar que el usuario haya ingresado algun nombre.</p>
