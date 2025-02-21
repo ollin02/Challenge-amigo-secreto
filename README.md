@@ -155,13 +155,13 @@ function sortearAmigo() {
 }
 ```
 
-<p>Para borra la lista de nombres se genero la funcion eliminarLista(elemento)</p>
+<p>Para borra la lista de nombres se genero en la fución agregarItem(elemeto, lista) la siguiente linea</p>
 
 ```javascript
 flistItem.innerHTML = elemeto + `<button id="elimina" onclick="eliminaNombre(${nombreamigo.indexOf(elemeto)})">x</button>`;
 }
 ```
-<p>y se genero la función )</p>
+<p>y se genero la función eliminaNombre(index)</p>
 
 ```javascript
 //funcion para eliminar elementos de la lista
