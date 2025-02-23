@@ -179,7 +179,7 @@ function eliminaNombre(index) {
         alert("El nombre fue eliminado");
     }
 
-    //Se desavilita el oton sorteo
+    //Se desavilita el boton sorteo
     if(nombreamigo.length === 0){
         sortea.setAttribute('disabled','true');
     }
