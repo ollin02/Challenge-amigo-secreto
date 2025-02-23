@@ -29,7 +29,7 @@
  <input type="text" id="amigo" class="input-name" placeholder="Escribe un nombre">
 ```
 
-<p>Capturamos el valor del input y lo declaramos como varible general en el archivo app.js donde haremos la logica para el funcionamiento de la aplicación, tambien declaramos como varible general un arreglo para guardar la lista de los nombres de los amigos.</p>
+<p>Capturamos el valor del input y lo declaramos como varible general en el archivo app.js donde haremos la logica para el funcionamiento de la aplicación, tambien declaramos como varible general un arreglo para guardar la lista de los nombres de los amigos, variables que se utilizaran en todo el programa.</p>
 
 ```javascript
   let nombreamigo = [];
