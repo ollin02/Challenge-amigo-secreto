@@ -44,7 +44,7 @@
   reinicia.style.visibility = "hidden";
 ```
 
-<p>La función agregarAmigo() llevar la logica para mostrar la lista en la pagina conforme se agrega un nombre se guardara en una lista y tambien sera la encargada de validar que el usuario haya ingresado algun nombre.</p>
+<p>La función agregarAmigo() llevar la logica para mostrar la lista en la pagina conforme se agrega un nombre se guardara en una lista, validar que el usuario haya ingresado algun nombre, también imprimira el nombre ganador.</p>
 
 ```javascript
 function agregarAmigo() {
